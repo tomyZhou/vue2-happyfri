@@ -8,6 +8,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var env = config.build.env
 
+var path = require('path') // 开头引入 path 模块
+
 var webpackConfig = merge(baseWebpackConfig, {
     module: {
         loaders: utils.styleLoaders({
@@ -46,6 +48,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         new HtmlWebpackPlugin({
             filename: config.build.index,
             template: 'index.html',
+            favicon:  './static/logo.ico',
             inject: true,
             // minify: {
             //     removeComments: true,
@@ -56,6 +59,7 @@ var webpackConfig = merge(baseWebpackConfig, {
             // },
             // necessary to consistently work with multiple chunks via CommonsChunkPlugin
             chunksSortMode: 'dependency'
+       
         }),
         // split vendor js into its own file
         new webpack.optimize.CommonsChunkPlugin({

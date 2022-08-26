@@ -5,10 +5,13 @@ var utils = require('./utils')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
+var path = require('path') // 开头引入 path 模块
+
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function(name) {
     baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
 })
+
 
 module.exports = merge(baseWebpackConfig, {
     module: {
@@ -30,6 +33,7 @@ module.exports = merge(baseWebpackConfig, {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'index.html',
+            favicon:  './static/logo.ico',
             inject: true
         })
     ]
